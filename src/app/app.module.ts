@@ -8,6 +8,7 @@ import {GITHUB_URL, GITHUB_URL_TOKEN} from '../conf';
 import {SearchService} from './common/services/search.service';
 import {ResultsService} from './common/services/results.service';
 import { ResultsComponent } from './results/results.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ResultsComponent } from './results/results.component';
   ],
   imports: [
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [
     SearchService,

@@ -1,9 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {SearchService} from './search.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {Subscription} from 'rxjs/Subscription';
+import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/from';
+import {GITHUB_URL_TOKEN} from '../../../conf';
 
 @Injectable()
 export class ResultsService {
@@ -14,7 +18,9 @@ export class ResultsService {
   // this._searchSubscription.unsubscribe();
 
 
-  public constructor(private _searchService: SearchService) {
+  public constructor(@Inject(GITHUB_URL_TOKEN) private _githubUrl: string,
+                     private _searchService: SearchService,
+                     private _httpClient: HttpClient) {
     this._searchSubscription =
       this._searchService.onSearch().subscribe((term: string) => this._onNextTerm(term));
   }
@@ -24,11 +30,15 @@ export class ResultsService {
   }
 
   private _onNextTerm(searchTerm: string): void {
-    const repos$: Observable<GithubRepo> = Observable.of(
-      {value: `result 1 for ${searchTerm}`},
-      {value: `result 2 for ${searchTerm}`}
-    );
-    this._results$$.next(repos$);
+    const url = `${this._githubUrl}?q=${encodeURIComponent(searchTerm)}`;
+
+    this._httpClient.get(url)
+      .subscribe((data: any) => {
+        const repos: GithubRepo[] = data.items.map((item: any) => {
+          return {value: JSON.stringify(item)};
+        });
+        this._results$$.next(Observable.from(repos));
+      });
   }
 
 }

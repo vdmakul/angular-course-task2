@@ -9,10 +9,6 @@ import 'rxjs/add/operator/debounceTime';
 
   private _searchTerms$$: Subject<string> = new Subject<string>();
 
-  public constructor( ) {
-    this.onSearch().subscribe((term: string) => console.log(`Searching for '${term}'`));
-  }
-
   public search(searchTerm: string): void {
     this._searchTerms$$.next(searchTerm);
   }
