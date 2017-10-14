@@ -1,14 +1,23 @@
-import {Inject, Injectable} from '@angular/core';
-import {GITHUB_URL_TOKEN} from '../../../conf';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/debounce';
+import 'rxjs/add/operator/debounceTime';
 
 @Injectable()
   export class SearchService {
 
-  public constructor(
-    @Inject(GITHUB_URL_TOKEN) private _githubUrl: string,
-  ) { }
+  private _searchTerms$$: Subject<string> = new Subject<string>();
 
-  public test(): string {
-    return this._githubUrl;
+  public constructor( ) {
+    this.onSearch().subscribe((term: string) => console.log(`Searching for '${term}'`));
+  }
+
+  public search(searchTerm: string): void {
+    this._searchTerms$$.next(searchTerm);
+  }
+
+  public onSearch(): Observable<string> {
+    return this._searchTerms$$.asObservable().debounceTime(500);
   }
 }
