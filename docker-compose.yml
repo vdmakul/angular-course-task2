@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  angular-course:
+    container_name: angular-course-task-2
+    build: docker/frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - ./:/var/www/angular-course
+    tty: true
+    networks:
+      - angular-course-network
+
+networks:
+ angular-course-network:

@@ -4,11 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --host 0.0.0.0",
+    "build": "ng build --output-hashing=all --delete-output-path --sourcemaps=false --prod",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "tslint './src/app/**/*.ts'",
+    "e2e": "ng e2e --host frontend --disable-host-check --webdriver-update=false  --env=e2e --aot"
   },
   "private": true,
   "dependencies": {
