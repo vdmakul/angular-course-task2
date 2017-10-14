@@ -8,7 +8,8 @@ import {GITHUB_URL, GITHUB_URL_TOKEN} from '../conf';
 import {SearchService} from './common/services/search.service';
 import {ResultsService} from './common/services/results.service';
 import { ResultsComponent } from './results/results.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {GithubInterceptorService} from './common/services/github-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,13 @@ import {HttpClientModule} from '@angular/common/http';
     {
       provide: GITHUB_URL_TOKEN,
       useValue: GITHUB_URL
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GithubInterceptorService,
+      multi: true
+    },
+
   ],
   bootstrap: [AppComponent]
 })

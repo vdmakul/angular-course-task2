@@ -31,12 +31,8 @@ export class ResultsService {
 
   private _onNextTerm(searchTerm: string): void {
     const url = `${this._githubUrl}?q=${encodeURIComponent(searchTerm)}`;
-
     this._httpClient.get(url)
-      .subscribe((data: any) => {
-        const repos: GithubRepo[] = data.items.map((item: any) => {
-          return {value: JSON.stringify(item)};
-        });
+      .subscribe((repos: GithubRepo[]) => {
         this._results$$.next(Observable.from(repos));
       });
   }
