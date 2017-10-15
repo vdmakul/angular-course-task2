@@ -1,5 +1,11 @@
-mat-card.repo {
+.repositories {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.repo-card {
   margin: 10px;
+  width: 40%;
 }
 
 .social {
@@ -7,7 +13,11 @@ mat-card.repo {
   float: right;
 }
 
+.author {
+  float: right;
+}
+
 img.avatar {
-  height: 32px;
-  width: 32px;
+  height: 96px;
+  width: 96px;
 }
