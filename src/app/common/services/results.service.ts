@@ -30,6 +30,11 @@ export class ResultsService {
   }
 
   private _onNextTerm(searchTerm: string): void {
+    if (!searchTerm || searchTerm.trim().length === 0) {
+      this._results$$.next(Observable.from([]));
+      return;
+    }
+
     const url = `${this._githubUrl}?q=${encodeURIComponent(searchTerm)}`;
     this._httpClient.get(url)
       .subscribe((repos: GithubRepo[]) => {

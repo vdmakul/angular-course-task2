@@ -1,31 +1,25 @@
-<ng-template #loading>
-  <mat-spinner></mat-spinner>
-</ng-template>
+<mat-card class="repo" *ngFor="let repo of results">
+  <mat-card-subtitle>
+    <img class="avatar" [src]="repo.owner_avatar_url">
+    {{repo.owner_login}}
+    <div class="social">
+      <mat-icon>star_rate</mat-icon>
+      <span>{{repo.stargazers_count}}</span>
+      <mat-icon>remove_red_eye</mat-icon>
+      <span>{{repo.watchers_count}}</span>
+      <mat-icon>call_split</mat-icon>
+      <span>{{repo.forks_count}}</span>
+    </div>
+  </mat-card-subtitle>
+  <mat-card-title>{{repo.name}}</mat-card-title>
+  <mat-card-content>
+    <p>{{repo.description}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Open repository</button>
+  </mat-card-actions>
+  <mat-card-footer>
 
-<div *ngIf="!searching; else loading">
-  <mat-card class="repo" *ngFor="let repo of results">
-    <mat-card-subtitle>
-      <img class="avatar" [src]="repo.owner_avatar_url">
-      {{repo.owner_login}}
-      <div class="social">
-        <mat-icon>star_rate</mat-icon>
-        <span>{{repo.stargazers_count}}</span>
-        <mat-icon>remove_red_eye</mat-icon>
-        <span>{{repo.watchers_count}}</span>
-        <mat-icon>call_split</mat-icon>
-        <span>{{repo.forks_count}}</span>
-      </div>
-    </mat-card-subtitle>
-    <mat-card-title>{{repo.name}}</mat-card-title>
-    <mat-card-content>
-      <p>{{repo.description}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Open repository</button>
-    </mat-card-actions>
-    <mat-card-footer>
-
-    </mat-card-footer>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </mat-card>
-</div>
+  </mat-card-footer>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</mat-card>

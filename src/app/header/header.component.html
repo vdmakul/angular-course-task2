@@ -1,3 +1,5 @@
 <mat-form-field>
   <input matInput placeholder="Search github" (input)="search($event.target.value)">
 </mat-form-field>
+
+<mat-spinner *ngIf="searching"></mat-spinner>
