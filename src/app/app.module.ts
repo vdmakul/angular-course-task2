@@ -1,15 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {MaterialModule} from './material/material.module';
-import { HeaderComponent } from './header/header.component';
+import {HeaderComponent} from './header/header.component';
 import {GITHUB_URL, GITHUB_URL_TOKEN} from '../conf';
 import {SearchService} from './common/services/search.service';
 import {ResultsService} from './common/services/results.service';
-import { ResultsComponent } from './results/results.component';
+import {ResultsComponent} from './results/results.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {GithubInterceptorService} from './common/services/github-interceptor.service';
+import {MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {GithubInterceptorService} from './common/services/github-interceptor.ser
   imports: [
     BrowserModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     SearchService,

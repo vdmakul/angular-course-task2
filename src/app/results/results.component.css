@@ -1,0 +1,13 @@
+mat-card.repo {
+  margin: 10px;
+}
+
+.social {
+  position: inherit;
+  float: right;
+}
+
+img.avatar {
+  height: 32px;
+  width: 32px;
+}

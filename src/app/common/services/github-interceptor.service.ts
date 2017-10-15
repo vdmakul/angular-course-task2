@@ -23,7 +23,18 @@ export class GithubInterceptorService implements HttpInterceptor {
 
   private _convert(items: any[]): GithubRepo[] {
     return items.map((item: any) => {
-      return {value: JSON.stringify(item)};
+      return {
+        name: item.name,
+        full_name: item.full_name,
+        owner_login: item.owner.login,
+        owner_avatar_url: item.owner.avatar_url,
+        html_url: item.html_url,
+        description: item.description,
+        stargazers_count: item.stargazers_count,
+        forks_count: item.forks_count,
+        watchers_count: item.watchers_count,
+        score: item.score
+      };
     });
   }
 }

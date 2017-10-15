@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -10,12 +10,14 @@ import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/materi
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule
   ],
   exports: [
     NoopAnimationsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule
   ],
   declarations: []
 
