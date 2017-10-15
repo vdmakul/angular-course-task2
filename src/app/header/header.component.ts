@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this._resultService.results().subscribe((res: any) => this.searching = false);
+    this._resultService.results$.subscribe((res: any) => this.searching = false);
   }
 
   public search(searchTerm: string): void {

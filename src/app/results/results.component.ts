@@ -15,7 +15,7 @@ export class ResultsComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this._resultsService.results().subscribe((foundRepos: GithubRepo[]) => {
+    this._resultsService.results$.subscribe((foundRepos: GithubRepo[]) => {
       this.results = foundRepos;
     });
   }
