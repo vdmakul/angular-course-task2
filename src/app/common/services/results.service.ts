@@ -12,7 +12,7 @@ import {GITHUB_URL_TOKEN} from '../../../conf';
 @Injectable()
 export class ResultsService {
 
-  private _results$$: Subject<Observable<GithubRepo>> = new Subject<Observable<GithubRepo>>();
+  private _results$$: Subject<GithubRepo[]> = new Subject<GithubRepo[]>();
   private _searchSubscription: Subscription;
   //todo where to unsubscribe?
   // this._searchSubscription.unsubscribe();
@@ -25,20 +25,20 @@ export class ResultsService {
       this._searchService.onSearch().subscribe((term: string) => this._onNextTerm(term));
   }
 
-  public results(): Observable<Observable<GithubRepo>> {
+  public results(): Observable<GithubRepo[]> {
     return this._results$$.asObservable();
   }
 
   private _onNextTerm(searchTerm: string): void {
     if (!searchTerm || searchTerm.trim().length === 0) {
-      this._results$$.next(Observable.from([]));
+      this._results$$.next([]);
       return;
     }
 
     const url = `${this._githubUrl}?q=${encodeURIComponent(searchTerm)}`;
     this._httpClient.get(url)
       .subscribe((repos: GithubRepo[]) => {
-        this._results$$.next(Observable.from(repos));
+        this._results$$.next(repos);
       });
   }
 
