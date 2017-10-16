@@ -1,5 +1,5 @@
 <div class="repositories">
-  <mat-card class="repo-card" *ngFor="let repo of results">
+  <mat-card class="repo-card" *ngFor="let repo of results$ | async">
 
     <div class="author">
       <img class="avatar" [src]="repo.owner_avatar_url">

@@ -1,23 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ResultsService} from '../common/services/results.service';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
 
-  public results: GithubRepo[] = [];
+  public results$: Observable<GithubRepo[]>;
 
   constructor(
     private _resultsService: ResultsService
-  ) { }
-
-  public ngOnInit() {
-    this._resultsService.results$.subscribe((foundRepos: GithubRepo[]) => {
-      this.results = foundRepos;
-    });
+  ) {
+    this.results$ = this._resultsService.results$;
   }
 
 }
