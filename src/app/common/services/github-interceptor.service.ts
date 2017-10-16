@@ -3,6 +3,8 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor,
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubInterceptorService implements HttpInterceptor {

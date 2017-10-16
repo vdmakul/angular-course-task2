@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ResultsService} from '../common/services/results.service';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
+import {SearchService} from '../common/services/search.service';
 
 @Component({
   selector: 'app-results',
@@ -12,9 +12,9 @@ export class ResultsComponent {
   public results$: Observable<GithubRepo[]>;
 
   constructor(
-    private _resultsService: ResultsService
+    private _searchService: SearchService
   ) {
-    this.results$ = this._resultsService.results$;
+    this.results$ = this._searchService.results$;
   }
 
 }

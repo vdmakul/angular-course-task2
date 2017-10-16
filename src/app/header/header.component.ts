@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../common/services/search.service';
-import {ResultsService} from '../common/services/results.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +11,11 @@ export class HeaderComponent implements OnInit {
   public searching: boolean;
 
   public constructor(
-    private _searchService: SearchService,
-    private _resultService: ResultsService
+    private _searchService: SearchService
   ) { }
 
   public ngOnInit(): void {
-    this._resultService.results$.subscribe((res: any) => this.searching = false);
+    this._searchService.results$.subscribe((res: any) => this.searching = false);
   }
 
   public search(searchTerm: string): void {
