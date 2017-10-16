@@ -14,7 +14,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
     this._searchTerms$$.next(searchTerm);
   }
 
-  public onSearch(): Observable<string> {
+  public get search$(): Observable<string> {
     return this._searchTerms$$.asObservable()
       .debounceTime(500)
       .distinctUntilChanged();

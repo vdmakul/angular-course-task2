@@ -16,7 +16,7 @@ export class ResultsService {
   public constructor(@Inject(GITHUB_URL_TOKEN) private _githubUrl: string,
                      private _searchService: SearchService,
                      private _httpClient: HttpClient) {
-    this.results$ = this._searchService.onSearch()
+    this.results$ = this._searchService.search$
       .switchMap((term: string) => this._getSearchResults(term));
   }
 
